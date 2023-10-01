@@ -49,14 +49,18 @@ export const MainList = ({
             </div>
           </div>
           <Popover
-            className="2xl:hidden"
+            className="lg:hidden"
             placement="bottomRight"
             content={<ListHeaderData customClasses="flex" />}
             trigger="click"
           >
-            <Button size="large" type="text" icon={<MoreOutlined />}></Button>
+            <Button
+              size="large"
+              type="text"
+              icon={<MoreOutlined style={{ fontSize: 25 }} />}
+            ></Button>
           </Popover>
-          <ListHeaderData customClasses="md:flex hidden " />
+          <ListHeaderData customClasses="lg:flex hidden " />
         </div>
       }
     >
