@@ -1,7 +1,9 @@
-import { Avatar, Checkbox, Divider, List, Tag } from "antd";
+import { Avatar, Button, Checkbox, Divider, List, Popover, Tag } from "antd";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
 import { useEffect, useState } from "react";
 import { MockData } from "./enum";
+import { MoreOutlined } from "@ant-design/icons";
+import { ListHeaderData } from "./ListHeaderData";
 
 export const MainList = ({
   data,
@@ -46,23 +48,15 @@ export const MainList = ({
               {data.length} Candidates
             </div>
           </div>
-          <div className="flex items-center">
-            <div className="text-lg text-prim">Qualified</div>
-            <Divider className="mx-4" type="vertical" />
-            <div className="text-lg text-[#777] flex items-center">
-              <p>Task </p>
-              <Tag className="ml-1 mr-0 rounded-full" bordered={false}>
-                25
-              </Tag>
-            </div>
-            <Divider className="mx-4" type="vertical" />
-            <div className="text-lg text-[#777] flex items-center">
-              <p>Disqualified</p>
-              <Tag className="ml-1 mr-0 rounded-full" bordered={false}>
-                73
-              </Tag>
-            </div>
-          </div>
+          <Popover
+            className="2xl:hidden"
+            placement="bottomRight"
+            content={<ListHeaderData customClasses="flex" />}
+            trigger="click"
+          >
+            <Button size="large" type="text" icon={<MoreOutlined />}></Button>
+          </Popover>
+          <ListHeaderData customClasses="md:flex hidden " />
         </div>
       }
     >
@@ -75,17 +69,23 @@ export const MainList = ({
       >
         {data.map((user: MockData) => (
           <List.Item key={user.id}>
-            <div className="flex items-center space-x-12">
+            <div className="md:space-x-12 space-x-4 flex items-center  ">
               <Checkbox value={user.id} />
-              <Avatar size="large" className="bg-sec text-prim scale-[2] mx-4">
+              <Avatar
+                size="large"
+                className="md:block hidden bg-sec text-prim scale-[2] mx-4"
+              >
                 {user.avatar}
               </Avatar>
               <div>
-                <p className="leading-[2] text-xl font-bold">{user.name}</p>
-                <p className="leading-[1] text-md font-light">
-                  {user.location}
+                <p className=" text-xl font-bold">
+                  <Avatar className="md:hidden bg-sec mr-2 text-prim">
+                    {user.avatar}
+                  </Avatar>
+                  {user.name}
                 </p>
-                <p className="leading-[1] text-lg text-[#777] font-light">
+                <p className="text-md font-light">{user.location}</p>
+                <p className="text-lg text-[#777] font-light">
                   {user.education}
                 </p>
                 <div>
@@ -102,7 +102,7 @@ export const MainList = ({
                   {user.hints.map((hint, i) => (
                     <div className="inline" key={hint + i}>
                       <Tag
-                        className="px-2 py-1 ml-1 mr-0 rounded-full"
+                        className="px-2 my-1 py-1 ml-0 mr-1 rounded-full"
                         bordered={false}
                         color="geekblue"
                       >

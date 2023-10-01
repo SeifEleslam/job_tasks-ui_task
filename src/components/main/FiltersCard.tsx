@@ -17,11 +17,18 @@ const FilterLabel = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export const FiltersCard = ({ selectedCount }: { selectedCount: number }) => {
+export const FiltersCard = ({
+  selectedCount,
+  customClasses,
+}: {
+  selectedCount: number;
+  customClasses?: string;
+}) => {
   return (
     <Card
+      className={customClasses}
       title={
-        <div className="border-3 border-[#aaa] flex justify-between items-center">
+        <div className=" border-3 border-[#aaa] flex justify-between items-center">
           <p className="text-lg text-[#777]">Filters</p>
           <p className="text-[#aaa] text-md font-light">
             #{selectedCount} selected

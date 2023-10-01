@@ -1,13 +1,7 @@
-import { Button, Divider, Dropdown, Select, Space } from "antd";
-import {
-  DownOutlined,
-  MailOutlined,
-  UserDeleteOutlined,
-  UserAddOutlined,
-  UserSwitchOutlined,
-  TagOutlined,
-} from "@ant-design/icons";
+import { Button, Popover, Select, Space } from "antd";
+import { DownOutlined } from "@ant-design/icons";
 import { DataItem } from "./enum";
+import { MainHeaderButtons } from "./MainHeaderButtons";
 const { Option } = Select;
 
 export const MainHeader = ({
@@ -19,19 +13,34 @@ export const MainHeader = ({
   selectedData: DataItem;
   setSelectedData: React.Dispatch<React.SetStateAction<DataItem>>;
 }) => {
+  //md:scale-[1] scale-[.75]
   return (
-    <div className="flex items-start justify-between space-x-4 w-full my-6">
-      <div>
-        <h1 className="mb-2 mt-0 text-2xl font-bold text-prim">
-          London Internship Program
-        </h1>
-        <p className="text-s">London</p>
+    <div className="lg:flex-row lg:space-x-4 xl:items-start items-center justify-between space-y-2 flex-col flex w-full my-6">
+      <div className="flex space-x-4 items-start">
+        <div>
+          <h1 className="md:text-2xl text-lg mb-2 mt-0 font-bold text-prim">
+            London Internship Program
+          </h1>
+          <p className="xl:block hidden">London</p>
+        </div>{" "}
+        <Popover
+          className="2xl:hidden flex"
+          placement="bottomRight"
+          content={
+            <MainHeaderButtons customClasses="flex flex-col space-y-2" />
+          }
+          trigger="click"
+        >
+          <Button type="primary">Actions</Button>
+        </Popover>
       </div>
-      <div>
+
+      <div className="max-w-full">
         <Select
           dropdownAlign={{
             overflow: {
-              adjustY: false,
+              adjustY: true,
+              shiftY: false,
             },
           }}
           listHeight={10000}
@@ -45,7 +54,7 @@ export const MainHeader = ({
           suffixIcon={
             <DownOutlined className="text-prim mr-2" style={{ fontSize: 15 }} />
           }
-          className="text-xl text-prim overflow-hidden customSelect shadow-g b-0 rounded-full w-96"
+          className="md:text-xl text-lg text-prim overflow-hidden customSelect shadow-g b-0 rounded-full w-96 max-w-[100%]"
           optionLabelProp="label"
           dropdownStyle={{
             padding: 0,
@@ -65,50 +74,7 @@ export const MainHeader = ({
           ))}
         </Select>
       </div>
-      <div className="flex space-x-2">
-        {icons.map((icon, i) => (
-          <Button
-            key={i}
-            className="shadow-g border-0"
-            size="large"
-            icon={icon}
-          />
-        ))}
-        <Divider className="h-full" type="vertical" />
-        <Dropdown.Button
-          size="large"
-          menu={{ items: [{ label: "test", type: "group" }] }}
-          type="primary"
-          icon={
-            <DownOutlined className="text-[white]" style={{ fontSize: 15 }} />
-          }
-        >
-          Move To Video Interview I
-        </Dropdown.Button>
-      </div>
+      <MainHeaderButtons customClasses="2xl:flex space-x-2  hidden" />
     </div>
   );
 };
-
-const icons = [
-  <TagOutlined
-    className="mx-[12px] my-[3px] text-[#aaa]"
-    style={{ fontSize: 15 }}
-  />,
-  <UserDeleteOutlined
-    className="mx-[12px] my-[3px] text-[#aaa]"
-    style={{ fontSize: 15 }}
-  />,
-  <UserAddOutlined
-    className="mx-[12px] my-[3px] text-[#aaa]"
-    style={{ fontSize: 15 }}
-  />,
-  <UserSwitchOutlined
-    className="mx-[12px] my-[3px] text-[#aaa]"
-    style={{ fontSize: 15 }}
-  />,
-  <MailOutlined
-    className="mx-[12px] my-[3px] text-[#aaa]"
-    style={{ fontSize: 15 }}
-  />,
-];

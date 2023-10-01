@@ -24,22 +24,22 @@ export const Main = () => {
     setFilteredData(globalSearch(data, fields.current, searchVal));
   }, [data, searchVal]);
   return (
-    <div className="py-2 md:px-12">
+    <div className="py-2 md:px-12 px-6">
       <MainHeader
         dataList={LISTDATA}
         selectedData={selectedData}
         setSelectedData={setSelectedData}
       />
-      <div className="gap-6 grid grid-cols-4 grid-rows-1 py-4 ">
-        <div className="col-span-1 relative h-full">
-          <div className="sticky top-6">
+      <div className="xl:gap-6 xl:grid xl:grid-cols-4 xl:grid-rows-1 flex flex-col space-y-4 items-center py-4 ">
+        <div className="xl:col-span-1 xl:relative h-full sticky max-w-full w-96 top-3 z-[100]">
+          <div className="xl:sticky top-6">
             <MainFilter
               selectedCount={selectedCount}
               setSearchVal={setSearchVal}
             />
           </div>
         </div>
-        <div className="col-span-3">
+        <div className="xl:col-span-3 w-full">
           <MainList data={filterdData} setSelectedCount={setSelectedCount} />
         </div>
       </div>
