@@ -30,7 +30,7 @@ export const Main = () => {
         selectedData={selectedData}
         setSelectedData={setSelectedData}
       />
-      <div className="xl:gap-6 xl:grid xl:grid-cols-4 xl:grid-rows-1 flex flex-col space-y-4 items-center py-4 ">
+      <div className="xl:gap-6 xl:grid xl:grid-cols-4 xl:grid-rows-1 xl:items-start flex flex-col space-y-4 items-center py-4 ">
         <div className="xl:col-span-1 xl:relative h-full sticky max-w-full w-96 top-3 z-[100]">
           <div className="xl:sticky top-6">
             <MainFilter
