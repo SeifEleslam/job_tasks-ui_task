@@ -17,7 +17,20 @@ export const Main = () => {
   const [filterdData, setFilteredData] = useState<MockData[]>(data);
   const fields = useRef(["name", "location", "education", "tags", "hints"]);
 
+  function getData() {
+    fetch("https://crmyorktowers.com/rest/local/api/zew/lead_api_report.php")
+      .then((data) => {
+        return data.json();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   useEffect(() => {
+    getData();
     setData(mockData(selectedData.count));
   }, [selectedData]);
   useEffect(() => {
